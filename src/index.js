@@ -17,9 +17,9 @@ const store = createStore(
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: 'white',
+    primary1Color: '#fff',
 
-    alternateTextColor: 'black',
+    alternateTextColor: '#000',
   },
   appBar: {
     height: 50,

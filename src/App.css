@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto');
+
+header{
+    height: 80px;
+}
+#logo a{
+    display: inline-block;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 27px;
+    color: #FA4C6F;
+    padding: 24px 58px 24px 40px;
+    text-decoration: none;
+}
+
+header nav, header nav li {
+    display: inline-block;
+}
+header nav ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+header nav li, #profile {
+    padding: 0 22px;
+}
+header nav a, #profile a{
+    text-decoration: none;
+    display: inline-block;
+    color: #1A1B1F;
+    font-size: 16px;
+    padding: 20px 0 24px;
+    font-family: Robot, sans-serif;
+    text-transform: uppercase;
+    border-top: 4px solid transparent;
+    transition: 200ms all;
+    transition-delay: 0ms;
+}
+body header nav li a.active, header #profile a.active{
+    border-top-color: #1A1B1F;
+    transition-delay: 200ms;
+    transition: 400ms all;
+}
+header nav li:hover a, #profile:hover a{
+    border-top-color: #838797;
+}
+
+#profile{
+    position: absolute;
+    right: 40px;
+    top: 8px;
+}
