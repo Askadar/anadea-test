@@ -6,5 +6,27 @@
     width: 500px;
     background: white;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-    height: 100%;
+}
+
+.drawer .drawer-section {
+    background: #FFFFFF;
+    padding: 20px 40px;
+}
+.drawer .drawer-section.drawer-section--primary {
+    background: #F1F1F1;
+}
+
+.drawer .drawer-section .drawer-section--row {
+    margin: 12px 0;
+}
+.drawer .drawer-section .drawer-header h3 {
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: #909090;
+}
+.drawer .drawer-section .drawer-action .button {
+    font-size: 18px;
+    line-height: 21px;
+    padding: 9px 12px 9px 17px;
 }

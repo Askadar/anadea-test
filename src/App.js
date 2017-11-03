@@ -34,7 +34,7 @@ class App extends Component {
 						<Link to="/profile">Profile</Link>
 					</span>
 				</header>
-				{/* <Switch> */}
+				<Switch>
 					<Route path="/history">
 						<History/>
 					</Route>
@@ -47,7 +47,7 @@ class App extends Component {
 					<Route path="/profile">
 						<TZ/>
 					</Route>
-				{/* </Switch> */}
+				</Switch>
 			</div>
 		);
 	}

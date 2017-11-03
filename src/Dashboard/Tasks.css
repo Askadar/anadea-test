@@ -1,0 +1,35 @@
+.task {
+    display: block;
+    padding: 14px 20px;
+    background: white;
+    box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.3);
+    width: 330px;
+    margin: 10px 0 0 40px;
+    border-radius: 4px;
+}
+
+.task .task-row {
+    display: block;
+    margin: 3px 0 2px;
+}
+
+.task .task-date {
+    color: #909090;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.task .task-label {
+    color: #1A1B1F;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.task .task-actions {
+    margin: 16px 10px 0 0px;
+}
+
+.task .task-actions .button {
+    line-height: 16px;
+    padding: 6px 9px 4px 10px;
+}
