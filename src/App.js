@@ -38,14 +38,14 @@ class App extends Component {
 					<Route path="/history">
 						<History/>
 					</Route>
-					<Route path="/">
-						<Dashboard/>
-					</Route>
 					<Route path="/tz">
 						<TZ/>
 					</Route>
 					<Route path="/profile">
 						<TZ/>
+					</Route>
+					<Route path="/">
+						<Dashboard/>
 					</Route>
 				</Switch>
 			</div>

@@ -8,6 +8,9 @@ html {
 header{
     height: 80px;
 }
+#root, #root > div {
+    height: 100%;
+}
 #logo a{
     display: inline-block;
     font-family: 'Open Sans', sans-serif;
@@ -57,18 +60,44 @@ header nav li:hover a, #profile:hover a{
     top: 8px;
 }
 
-
 .button {
     border: none;
     outline: none;
     background: none;
+    cursor: pointer;
+    border: 1px transparent solid;
     border-radius: 4px;
     text-transform: uppercase;
+    position: relative;
+    transition: all 300ms;
+    transition-timing-function: ease-out;
 }
+.button.button-alt:after {
+	content: '';
+	width: 0;
+    height: 1px;
+	position: absolute;
+	bottom: -1px;
+	left: 5%;
+	display: inline-block;
+	background: #4c71fe;
+    transition: all 300ms;
+    transition-timing-function: ease-out;
+}
+.button.button-alt:hover:after, .button.button-alt.active:after {
+    width: 90%;
+}
+.button.button-primary:hover {
+    background: white;
+    border: 1px #4C71FE solid;
+    color: #4C71FE;
+    box-sizing: border-box;
+}
+
 .button.button-primary {
     background: #4C71FE;
     color: white;
 }
-.button.button-destructive {
+.button.button-alt {
     color: #4C71FE;
 }

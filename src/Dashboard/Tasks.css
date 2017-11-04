@@ -1,3 +1,8 @@
+.tasks {
+    position: absolute;
+    left: 0;
+    top: 38px;
+}
 .task {
     display: block;
     padding: 14px 20px;
@@ -11,6 +16,15 @@
 .task .task-row {
     display: block;
     margin: 3px 0 2px;
+}
+
+.task .task-row.task-row--centered {
+    margin: 3px auto 2px;
+}
+
+.task .task-new:before {
+    content: '+';
+    margin-right: 2px;
 }
 
 .task .task-date {

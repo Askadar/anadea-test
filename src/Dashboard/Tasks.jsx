@@ -2,8 +2,11 @@ import React from 'react';
 
 import './Tasks.css';
 
-const Tasks = ({tasks}) =>
-<div>
+const Tasks = ({ tasks, newTaskActive, addNewTask }) =>
+<div className="tasks">
+    <div className="task">
+        <button className={`task-row task-row--centered task-new button button-alt${newTaskActive ? ' active' : ''}`} onClick={addNewTask}>New Task</button>
+    </div>
     {tasks.map((task) =>
         <Task {...task} key={task.id}/>
     )}
@@ -15,7 +18,7 @@ const Task = ({id, label, date}) =>
     <span className="task-row task-label">{label}</span>
     <div className="task-row task-actions">
         <button className="button button-primary">Edit</button>
-        <button className="button button-destructive">Delete</button>
+        <button className="button button-alt">Delete</button>
     </div>
 </div>
 

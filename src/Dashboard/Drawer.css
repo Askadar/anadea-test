@@ -6,11 +6,20 @@
     width: 500px;
     background: white;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+	transition: all 350ms;
+	transition-timing-function: ease-out;
+	transform: translateX(500px);
+}
+
+.drawer.active {
+    transform: translateX(0px);
 }
 
 .drawer .drawer-section {
     background: #FFFFFF;
     padding: 20px 40px;
+    /*box-shadow: 0 1px 1px -1px grey;*/
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
 }
 .drawer .drawer-section.drawer-section--primary {
     background: #F1F1F1;
@@ -29,4 +38,52 @@
     font-size: 18px;
     line-height: 21px;
     padding: 9px 12px 9px 17px;
+}
+
+.drawer .drawer-section .drawer-input input{
+    border: none;
+    outline: none;
+    font-size: 18px;
+}
+
+.drawer .drawer-section .drawer-select .drawer-select--icon {
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.drawer .drawer-section .drawer-select .drawer-select--icon span {
+    display: block;
+    margin-top: 4px;
+}
+.drawer .drawer-section .drawer-select .drawer-select--icon .img {
+    transition: 300ms all;
+    transition-timing-function: ease-out;
+    height: 50px;
+    width: 50px;
+    border: 1px solid transparent;
+    padding: 12px;
+    border-radius: 50%;
+}
+
+.drawer .drawer-section .drawer-select .drawer-select--icon.active .img, .drawer .drawer-section .drawer-select .drawer-select--icon:hover .img {
+    border-color: #4c71fe;
+}
+
+.drawer .drawer-section .drawer-select .drawer-select--tag {
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    padding: 8px 20px;
+    margin: 4px 6px;
+    border-radius: 57px;
+    font-size: 16px;
+    transition: 300ms all;
+    transition-timing-function: ease-out;
+    border: 1px solid transparent;
+}
+
+.drawer .drawer-section .drawer-select .drawer-select--tag.active, .drawer .drawer-section .drawer-select .drawer-select--tag:hover {
+    border-color: #4c71fe;
 }
