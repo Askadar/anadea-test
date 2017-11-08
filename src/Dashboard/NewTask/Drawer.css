@@ -87,3 +87,14 @@
 .drawer .drawer-section .drawer-select .drawer-select--tag.active, .drawer .drawer-section .drawer-select .drawer-select--tag:hover {
     border-color: #4c71fe;
 }
+
+.drawer .drawer-section .drawer-validation {
+    font-weight: bold;
+    font-size: 14px;
+}
+.drawer .drawer-section .drawer-validation--errors {
+    color: red;
+}
+.drawer .drawer-section .drawer-validation--warnings {
+    color: yellow;
+}

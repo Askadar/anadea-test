@@ -46,10 +46,26 @@ const DrawerTaskExplanation = ({ who, to, why }) =>
     </span>
 </section>
 
-const DrawerAction = ({children}) =>
-<section className="drawer-section--row drawer-action">
-    <button className="button button-primary">{children}</button>
+const DrawerAction = ({children, className, style, ...rest}) =>
+<section className="drawer-section--row drawer-action" className={className} style={style}>
+    <button className="button button-primary" {...rest}>{children}</button>
 </section>
+
+const DrawerValidation = ({active, warnings, errors}) =>
+{
+    if (active)
+        return (
+            <div className="drawer-validation">
+                {Object.keys(errors).length > 0 && <div className="drawer-validation--errors">
+                    {Object.keys(errors).map(key => <p key={key}>{errors[key]}</p>)}
+                </div>}
+                {Object.keys(warnings).length > 0 && <div className="drawer-validation--warnings">
+                    {Object.keys(warnings).map(key => <p key={key}>{warnings[key]}</p>)}
+                </div>}
+            </div>
+        );
+    return null;
+}
 
 const DrawerIconSelect = ({ available, activeType, selectType }) =>
 <section
@@ -78,19 +94,13 @@ const DrawerTagSelect = ({available, activeTask, selectTask}) =>
     }
 </section>
 
-const availableTasks = {
-    'Plumber': [
-        'Unblock a toilet',
-        'Unblock a sink',
-        'Fix a water leak',
-        'Install a sink',
-        'Install a shower',
-        'Install a toilet',
-    ]
-}
-
-const Drawer = ({ active, address, type, task, description }) =>
-<div className={`drawer${/*active*/ true ? ' active' : ''}`}>
+const Drawer = ({
+    active,
+    address,
+    type, task, description,
+    validateAndDispatch, validation, validated,
+    availableTasks }) =>
+<div className={`drawer${active ? ' active' : ''}`}>
     <DrawerSection primary>
         <DrawerHeader>New Task</DrawerHeader>
         <DrawerTaskExplanation
@@ -98,8 +108,12 @@ const Drawer = ({ active, address, type, task, description }) =>
             to={task.activeTask}
             why={description.text}
         />
-        <DrawerText>My address is <DrawerInput style={{background: 'none', width: '100%'}}>{address}</DrawerInput></DrawerText>
-        <DrawerAction>Create Task</DrawerAction>
+        <DrawerValidation
+            active={!validated}
+            errors={validation.validationErrors}
+            warnings={validation.validationWarnings}/>
+        <DrawerText>My address is {address}</DrawerText>
+        <DrawerAction onClick={validateAndDispatch}>Create Task</DrawerAction>
     </DrawerSection>
     <DrawerSection>
         <DrawerHeader>Location</DrawerHeader>

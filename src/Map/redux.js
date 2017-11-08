@@ -1,3 +1,5 @@
+import { taskCreated } from '../commonActions';
+
 export const types = {
     recievedAddress: '@Map:REC_Addr'
 }
@@ -17,6 +19,8 @@ const initialState = {
 }
 const Map = (state = initialState, action) => {
     switch (action.type) {
+        case taskCreated:
+            return initialState;
         case types.recievedAddress:
             const { results, status, location } = action;
             if (status === 'OK')
