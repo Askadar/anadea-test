@@ -3,17 +3,14 @@ import { connect } from 'react-redux';
 
 import { actions as dashboardActions } from './redux';
 import { actions as newTaskActions } from './NewTask/redux';
-import { createTask } from '../commonActions';
+import { actions as historyActions } from '../History/redux';
+import { createTask, deleteTask, editTask, startEditTask } from '../commonActions';
 import Tasks from './Tasks';
 import Drawer from './NewTask';
+import Modal from './Modal';
 import Map from '../Map';
 
 import './index.css';
-
-const NewTaskMenu = ({handlers}) =>
-<div>
-New Task commence
-</div>
 
 const availableTasks = {
     'Plumber': [
@@ -36,9 +33,9 @@ class Dashboard extends Component {
             validationWarnings: {},
         }
     }
-    validateAndDispatch(){
-        const { address, activeType, activeTask, text, createTask } = this.props;
-        const { validationErrors, validationWarnings } = this.state;
+    validateAndDispatch(editId){
+        const { address, activeType, activeTask, text, createTask, editTask } = this.props;
+        const { validationWarnings } = this.state;
         let errors = {}, warnings = {};
         if (!address || typeof address !== 'string')
             errors.address = 'Please select address';
@@ -55,14 +52,23 @@ class Dashboard extends Component {
             status
         });
         if (!status)
-            createTask({ address, taskType: activeType, task: activeTask, description: text });
+            if (!editId)
+                createTask({ address, taskType: activeType, task: activeTask, description: text });
+            else
+                editTask({ id: editId, address, taskType: activeType, task: activeTask, description: text });
     }
     render() {
         const {
-            creatingTask, addNewTask, createTask,
+            creatingTask, deletingTask,
+            toggleDrawer, toggleTaskDelete,
+
+            // createTask,
+            deleteTask,
+            startEditTask,
 
             address,
 
+            editing,
             activeType, selectType,
             activeTask, selectTask,
             text, updateDescription,
@@ -72,15 +78,30 @@ class Dashboard extends Component {
         const { validationErrors, validationWarnings, status } = this.state;
         return(
             <div className="dashboard">
+                <Modal
+                    visible={deletingTask}
+                    title="Confirm delete"
+                    onOk={() => {
+                        toggleTaskDelete();
+                        deleteTask({ id: deletingTask });
+                    }}
+                    onCancel={toggleTaskDelete}
+                    >
+                    Are you sure you want to delete task at {(tasks.find(task => task.id === deletingTask) || {}).address}?
+                </Modal>
                 <Map
                   googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp"
                   loadingElement={<div style={{ height: `100%` }} />}
-                  containerElement={<div style={{ height: `calc(100vh - 80px)`, minHeight: '600px'}} />}
+                  containerElement={<div style={{ height: `calc(100vh - 80px)`}} />}
                   mapElement={<div style={{ height: `100%` }} />}></Map>
-                <Tasks tasks={tasks} newTaskActive={creatingTask} addNewTask={addNewTask}></Tasks>
+                <Tasks tasks={tasks} newTaskActive={creatingTask}
+                    addNewTask={toggleDrawer}
+                    deleteTask={toggleTaskDelete}
+                    editTask={startEditTask}></Tasks>
                 <Drawer
                     active={creatingTask}
                     address={address}
+                    editing={editing}
                     type={{selectType, activeType}}
                     task={{selectTask, activeTask}}
                     description={{text, updateDescription}}
@@ -94,6 +115,10 @@ class Dashboard extends Component {
     }
 }
 
-export default connect(({ Dashboard: { creatingTask }, NewTask: { activeType, activeTask, text }, Map: { address }, History: { tasks } }) => {
-    return { creatingTask, address, activeType, activeTask, text, tasks: tasks.slice(-3) };
-}, { ...dashboardActions, ...newTaskActions, createTask } )(Dashboard)
+export default connect(({ Dashboard: { creatingTask, deletingTask }, NewTask: { activeType, activeTask, text, editing }, Map: { address }, History: { tasks } }) => {
+    return {
+        creatingTask, deletingTask,
+        address,
+        activeType, activeTask, text, editing,
+        tasks: tasks.slice(-3).reverse() };
+}, { ...dashboardActions, ...newTaskActions, ...historyActions, createTask, deleteTask, editTask, startEditTask } )(Dashboard)

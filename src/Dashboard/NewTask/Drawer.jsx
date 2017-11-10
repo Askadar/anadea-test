@@ -47,7 +47,7 @@ const DrawerTaskExplanation = ({ who, to, why }) =>
 </section>
 
 const DrawerAction = ({children, className, style, ...rest}) =>
-<section className="drawer-section--row drawer-action" className={className} style={style}>
+<section className={`drawer-section--row drawer-action ${className}`} style={style}>
     <button className="button button-primary" {...rest}>{children}</button>
 </section>
 
@@ -95,7 +95,7 @@ const DrawerTagSelect = ({available, activeTask, selectTask}) =>
 </section>
 
 const Drawer = ({
-    active,
+    active, editing,
     address,
     type, task, description,
     validateAndDispatch, validation, validated,
@@ -113,7 +113,7 @@ const Drawer = ({
             errors={validation.validationErrors}
             warnings={validation.validationWarnings}/>
         <DrawerText>My address is {address}</DrawerText>
-        <DrawerAction onClick={validateAndDispatch}>Create Task</DrawerAction>
+        <DrawerAction onClick={() => editing ? validateAndDispatch(editing) : validateAndDispatch()}>{editing ? 'Edit task' : 'Create Task'}</DrawerAction>
     </DrawerSection>
     <DrawerSection>
         <DrawerHeader>Location</DrawerHeader>

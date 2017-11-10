@@ -1,4 +1,4 @@
-import { taskCreated } from '../commonActions';
+import { taskCreated, taskForEditLoaded } from '../commonActions';
 
 export const types = {
     recievedAddress: '@Map:REC_Addr'
@@ -15,10 +15,13 @@ export const actions = {
 }
 const initialState = {
     pos: null,
-    address: null
+    address: null,
+    editing: false
 }
 const Map = (state = initialState, action) => {
     switch (action.type) {
+        case taskForEditLoaded:
+            return state.editing ? initialState : {...state, address: action.address, editing: true};
         case taskCreated:
             return initialState;
         case types.recievedAddress:

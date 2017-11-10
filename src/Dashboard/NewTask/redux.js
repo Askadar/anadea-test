@@ -1,4 +1,4 @@
-import { taskCreated } from '../../commonActions';
+import { taskCreated, taskForEditLoaded, taskEdited } from '../../commonActions';
 
 export const types = {
     selectType: '@NewTask:Select-type',
@@ -21,12 +21,16 @@ export const actions = {
 const initialState = {
     activeType: null,
     activeTask: null,
-    text: ''
+    text: '',
+    editing: null
 };
 const NewTask = (state = initialState, action) => {
   switch (action.type) {
+    case taskForEditLoaded:
+        const { taskType: activeType, task: activeTask, description: text, id} = action
+        return state.editing ? initialState : { ...state, activeType, activeTask, text, editing: id };
+    case taskEdited:
     case taskCreated:
-        console.log('NewTasked New Task');
         return initialState;
     case types.updateDescription:
         return { ...state, text: action.newText};

@@ -12,6 +12,10 @@
     margin: 10px 0 0 40px;
     border-radius: 4px;
 }
+.task.task-inline {
+    display: inline-block;
+    margin: 10px 15px;
+}
 
 .task .task-row {
     display: block;

@@ -8,9 +8,10 @@ import './App.css';
 
 const Link = ({children, ...props}) => <RawLink {...props} activeClassName="active">{children}</RawLink>
 
+const Empty = () => <div>Nope</div>;
+
 class App extends Component {
 	render() {
-		const {history, location} = this.props;
 		return (
 			<div>
 				<header>
@@ -42,7 +43,7 @@ class App extends Component {
 						<TZ/>
 					</Route>
 					<Route path="/profile">
-						<TZ/>
+						<Empty/>
 					</Route>
 					<Route path="/">
 						<Dashboard/>

@@ -4,15 +4,17 @@
     right: 0;
     top: 0;
     width: 500px;
+    height: 100%;
+    overflow: auto;
     background: white;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 	transition: all 350ms;
 	transition-timing-function: ease-out;
-	transform: translateX(500px);
+	transform: translateX(500px) scaleX(0);
 }
 
 .drawer.active {
-    transform: translateX(0px);
+    transform: translateX(0px) scaleX(1);
 }
 
 .drawer .drawer-section {
